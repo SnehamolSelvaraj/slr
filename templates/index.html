@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Linear Regression - Fitness Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+            background: linear-gradient(120deg, #ff9a9e, #fad0c4);
+            color: white;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            width: 400px;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            color: #333;
+        }
+        h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        h2 {
+            font-size: 20px;
+            color: #555;
+        }
+        form {
+            margin: 20px 0;
+        }
+        input, button {
+            padding: 12px;
+            width: 90%;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            margin-top: 10px;
+        }
+        button {
+            background: #28a745;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: #218838;
+        }
+        .result {
+            font-size: 18px;
+            font-weight: bold;
+            color: #28a745;
+            margin-top: 20px;
+        }
+        .error {
+            color: red;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Simple Linear Regression</h1>
+    <h2>Fitness Prediction</h2>
+    
+    <div class="container">
+        <h3>Enter Workout Duration to Predict Calories Burned</h3>
+        <form action="/predict" method="post">
+            <label for="workout_duration">Workout Duration (minutes):</label>
+            <input type="number" id="workout_duration" name="workout_duration" required>
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if prediction is not none %}
+            <div class="result">🔥 Predicted Calories Burned: {{ prediction }} 🔥</div>
+        {% endif %}
+        
+        {% if error %}
+            <p class="error">⚠️ {{ error }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
